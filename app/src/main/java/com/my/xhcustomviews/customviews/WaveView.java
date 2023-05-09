@@ -28,7 +28,7 @@ public class WaveView extends View {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(5f);
-        mPaint.setShadowLayer(10, 0, 10, 0x66000000); // 设置阴影效果
+        mPaint.setShadowLayer(20, 10, 20, 0x66000000); // 设置阴影效果
 
         mPath = new Path();
         mOffset = 0;
@@ -64,7 +64,7 @@ public class WaveView extends View {
                 mPath.moveTo(startX, mScreenHeight * i / 2);
 
                 for (int x = startX; x <= endX; x++) {
-                    float y = (float) (mScreenHeight / 2 + 50 * Math.sin(4 * Math.PI * x / mScreenWidth + mOffset * Math.PI / 180));
+                    float y = (float) (mScreenHeight / 2 + 50 * Math.sin(4 * Math.PI * x / mScreenWidth + mOffset * Math.PI / (90*(i+1))));
                     mPath.lineTo(x, y);
                 }
 
@@ -85,7 +85,7 @@ public class WaveView extends View {
                 canvas.drawPath(mPath, mPaint);
             }
 
-            mOffset -= 15;
+            mOffset -= 10;
         }
 
         mHandler.sendEmptyMessageDelayed(0, 50);
